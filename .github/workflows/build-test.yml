@@ -1,0 +1,23 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Select Xcode version
+      run: sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+
+    - name: Build iOS
+      run: xcodebuild build -scheme EighToBadge -destination 'generic/platform=iOS' -configuration Debug
+
+    - name: Test Core Package
+      run: xcodebuild test -scheme EighToBadgeCore -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max' -configuration Debug
