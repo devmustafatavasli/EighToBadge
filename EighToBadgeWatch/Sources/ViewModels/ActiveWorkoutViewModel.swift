@@ -13,8 +13,7 @@ import EighToBadgeCore
 import Combine
 
 @Observable
-@MainActor
-final class ActiveWorkoutViewModel {
+final class ActiveWorkoutViewModel: @unchecked Sendable {
   var workoutState: ActiveWorkoutState
   var currentExerciseStartTime: Date?
   var timerPublisher: Timer.TimerPublisher?
