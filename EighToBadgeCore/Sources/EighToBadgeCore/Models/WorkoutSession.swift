@@ -11,7 +11,7 @@ import Foundation
 import SwiftData
 
 @Model
-public final class WorkoutSession: Identifiable, Sendable {
+public final class WorkoutSession: Identifiable {
   public var id: UUID
   public var date: Date
   public var templateName: String

@@ -11,7 +11,7 @@ import Foundation
 import SwiftData
 
 @Model
-public final class ExercisePlan: Identifiable, Sendable {
+public final class ExercisePlan: Identifiable {
   public var id: UUID
   public var order: Int
   public var kind: ExerciseKind

@@ -28,8 +28,8 @@
 | Bundle ID (iOS) | com.devmustafatavasli.eightobadge |
 | Bundle ID (watchOS) | com.devmustafatavasli.eightobadge.watchkitapp |
 | Team ID | WX8U7ZR7K8 |
-| Minimum iOS | 26.0 |
-| Minimum watchOS | 26.0 |
+| Minimum iOS | 17.0 |
+| Minimum watchOS | 10.0 |
 | iPad | Not supported |
 | macOS | Not supported |
 | Swift Version | 6.0, strict concurrency |

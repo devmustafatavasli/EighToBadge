@@ -4,8 +4,8 @@ import PackageDescription
 let package = Package(
   name: "EighToBadgeCore",
   platforms: [
-    .iOS(.v26),
-    .watchOS(.v26),
+    .iOS(.v17),
+    .watchOS(.v10),
   ],
   products: [
     .library(name: "EighToBadgeCore", targets: ["EighToBadgeCore"]),

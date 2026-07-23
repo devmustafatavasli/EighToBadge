@@ -9,7 +9,7 @@
 import Foundation
 import SwiftData
 
-public protocol WorkoutTemplateRepositoryProtocol: Sendable {
+public protocol WorkoutTemplateRepositoryProtocol {
   func create(_ template: WorkoutTemplate) async throws
   func fetch(id: UUID) async throws -> WorkoutTemplate?
   func fetchAll() async throws -> [WorkoutTemplate]
@@ -17,7 +17,7 @@ public protocol WorkoutTemplateRepositoryProtocol: Sendable {
   func delete(_ template: WorkoutTemplate) async throws
 }
 
-public actor WorkoutTemplateRepository: WorkoutTemplateRepositoryProtocol {
+public final class WorkoutTemplateRepository: WorkoutTemplateRepositoryProtocol {
   private let modelContext: ModelContext
 
   public init(modelContext: ModelContext) {
