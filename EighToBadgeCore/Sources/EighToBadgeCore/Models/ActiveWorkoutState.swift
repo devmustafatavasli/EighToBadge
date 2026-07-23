@@ -9,7 +9,7 @@
 
 import Foundation
 
-public struct ActiveWorkoutState: Sendable {
+public struct ActiveWorkoutState {
   public let template: WorkoutTemplate
   public var currentExerciseIndex: Int = 0
   public var elapsedSeconds: TimeInterval = 0

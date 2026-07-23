@@ -41,21 +41,8 @@ public actor HealthKitService {
     }
 
     let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate)!
-    let query = HKSampleQuery(
-      sampleType: heartRateType,
-      predicate: HKQuery.predicateForSamples(
-        withStart: Date(timeIntervalSinceNow: -60),
-        end: Date()
-      ),
-      limit: HKObjectQueryNoLimit,
-      sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)]
-    ) { _, samples, _ in
-      // This is handled via completion handler in the background
-    }
 
-    return await withCheckedThrowingContinuation { continuation in
-      var completed = false
-
+    return try await withCheckedThrowingContinuation { continuation in
       let query = HKSampleQuery(
         sampleType: heartRateType,
         predicate: HKQuery.predicateForSamples(
@@ -65,10 +52,7 @@ public actor HealthKitService {
         limit: 1,
         sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)]
       ) { _, samples, error in
-        guard !completed else { return }
-        completed = true
-
-        if let error = error {
+        if let error {
           continuation.resume(throwing: error)
           return
         }
