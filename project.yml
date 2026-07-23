@@ -63,7 +63,7 @@ targets:
   EighToBadgeWatch:
     type: application
     platform: watchOS
-    deploymentTarget: "26.0"
+    deploymentTarget: "10.0"
     sources:
       - path: EighToBadgeWatch
         excludes:

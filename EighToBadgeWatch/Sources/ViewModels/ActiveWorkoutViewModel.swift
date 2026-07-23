@@ -82,19 +82,17 @@ final class ActiveWorkoutViewModel {
   }
 
   func saveAndDismiss() async {
-    do {
-      let session = WorkoutSession(
-        templateName: workoutState.template.name,
-        isStandardHyrox: workoutState.template.isStandardHyrox,
-        totalDuration: workoutState.totalDuration,
-        results: workoutState.results
-      )
+    let templateName = workoutState.template.name
+    let isStandardHyrox = workoutState.template.isStandardHyrox
+    let results = workoutState.results
+    let repo = sessionRepository
 
-      let useCase = RecordSessionUseCase(sessionRepository: sessionRepository)
+    do {
+      let useCase = RecordSessionUseCase(sessionRepository: repo)
       _ = try await useCase.execute(
-        templateName: workoutState.template.name,
-        isStandardHyrox: workoutState.template.isStandardHyrox,
-        results: workoutState.results
+        templateName: templateName,
+        isStandardHyrox: isStandardHyrox,
+        results: results
       )
 
       showSummary = false
@@ -129,9 +127,11 @@ final class ActiveWorkoutViewModel {
   private func pollHeartRate() async {
     do {
       if let hr = try await healthKitService.getCurrentHeartRate() {
-        hrSamples.append(hr)
-        maxHRDuringExercise = max(maxHRDuringExercise, hr)
-        workoutState.currentHeartRate = hr
+        await MainActor.run {
+          self.hrSamples.append(hr)
+          self.maxHRDuringExercise = max(self.maxHRDuringExercise, hr)
+          self.workoutState.currentHeartRate = hr
+        }
       }
     } catch {
       // HealthKit read failed, continue without HR
