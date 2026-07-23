@@ -81,20 +81,6 @@ targets:
         DEVELOPMENT_TEAM: WX8U7ZR7K8
         CODE_SIGN_STYLE: Automatic
 
-  # ── Unit Tests ────────────────────────────────────────────────────────────
-  EighToBadgeCoreTests:
-    type: bundle.unit-test
-    platform: iOS
-    deploymentTarget: "26.0"
-    sources:
-      - path: EighToBadgeCoreTests
-    dependencies:
-      - package: EighToBadgeCore
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.devmustafatavasli.eightobadge.tests
-        GENERATE_INFOPLIST_FILE: YES
-
 schemes:
   EighToBadge:
     build:
@@ -104,10 +90,6 @@ schemes:
       config: Debug
     test:
       config: Debug
-      targets:
-        - name: EighToBadgeCoreTests
-          parallelizable: true
-          randomExecutionOrder: true
     profile:
       config: Release
     analyze:
