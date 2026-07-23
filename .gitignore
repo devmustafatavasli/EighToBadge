@@ -1,0 +1,34 @@
+# Xcode
+build/
+*.pbxproj
+*.xcworkspace
+xcuserdata/
+*.xcodeproj
+DerivedData/
+
+# SwiftPM
+.build/
+*.swiftpm
+Package.resolved
+
+# Local configuration (not committed)
+.xcconfig
+*.mobileprovision
+*.ipa
+*.dsym
+.mcp.json
+CLAUDE.md
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.local
+
+# Temporary
+*.tmp
